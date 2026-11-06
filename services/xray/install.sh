@@ -1,7 +1,11 @@
 source /opt/hiddify-manager/scripts/common/utils.sh
 source /opt/hiddify-manager/scripts/common/package_manager.sh
 # latest= #$(get_release_version hiddify-sing-box)
-version="" #use specific version if needed otherwise it will use the latest
+# Pinned to 26.7.28, the last Xray whose REALITY server accepts a ClientHello without X25519MLKEM768.
+# From 26.9.9 on (xtls/reality 8cdf7bf) REALITY rejects any hello that does not offer X25519MLKEM768 before X25519,
+# and every sing-box based client strips X25519MLKEM768 from its REALITY hello (Hiddify app before 5.5.5, NekoBox,
+# Karing, sing-box, ...): with 26.10.31 REALITY worked only on Hiddify 5.5.5. Empty again = the latest in packages.lock.
+version="26.7.28"
 mkdir -p bin run
 
 
